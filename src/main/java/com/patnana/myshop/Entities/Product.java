@@ -16,12 +16,12 @@ public class Product {
 	@Column(name = "item_no")
 	private int itemNo;
 	private String itemName;
-	private int categoryId;
-	private int brandId;
-	private int subBrandId;
-	private String qty;
+	private int categoryId = 0;
+	private int brandId = 0;
+	private int subBrandId = 0;
+	private int qty = 0;
 	private String units;
-	private int totalUnits;
+	private int totalUnits = 0;
 	private float mrp;
 
 	public int getItemNo() {
@@ -64,11 +64,11 @@ public class Product {
 		this.subBrandId = subBrandId;
 	}
 
-	public String getQty() {
+	public int getQty() {
 		return qty;
 	}
 
-	public void setQty(String qty) {
+	public void setQty(int qty) {
 		this.qty = qty;
 	}
 
