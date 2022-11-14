@@ -31,6 +31,10 @@ public class ProductService {
 		return this.productRepository.findById(itemNo);
 	}
 	
+	public Optional<List<Product>> getProductsByName(String name) {
+		return this.productRepository.findByItemName(name);
+	}
+	
 	public String updateProduct(Product product, int id) {
 		
 		Product product1 = this.productRepository.findById(id).orElseThrow(
@@ -43,5 +47,10 @@ public class ProductService {
 	public String deleteProduct(int id) {
 		this.productRepository.deleteById(id);
 		return "Product deleted successfully";
+	}
+	
+	public List<Product> getProductsByCategoryIdAndBrandId(int categoryId, int brandId) {
+		this.productRepository.findAll();
+		return this.productRepository.findByCategoryIdAndBrandId(categoryId, brandId);
 	}
 }

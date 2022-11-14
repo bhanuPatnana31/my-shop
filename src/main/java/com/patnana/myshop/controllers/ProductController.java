@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.patnana.myshop.Entities.Product;
@@ -51,5 +52,16 @@ public class ProductController {
 	@DeleteMapping(path="/{id}")
 	public String deleteProduct(@PathVariable int id) {
 		return this.productService.deleteProduct(id);
+	}
+	
+	@GetMapping("/byName/{name}")
+	public List<Product> getProductsByName(@PathVariable String name) {
+		return this.productService.getProductsByName(name).orElseThrow(
+				() -> new ResourceNotFoundException("Products By given Name not Found"));
+	}
+	
+	@GetMapping("/filter")
+	public List<Product> getProductsByCategoryIdAndBrandId(@RequestParam int categoryId, @RequestParam int brandId) {
+	return this.productService.getProductsByCategoryIdAndBrandId(categoryId, brandId);	
 	}
 }
